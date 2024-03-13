@@ -37,63 +37,78 @@ class Translator {
         let newText = text;
 
         for (let i in americanToBritishSpelling) {
-            let regex = new RegExp(`(\.)?(${i.toLowerCase()})(\.)?`,'gi');
-            newText = newText.replace(regex, (_match, a, b, c) => {
-                console.log(a,b,c);
+            let regex = new RegExp(`(\[\w-])?(${i.toLowerCase()})(\\w)?(\.)?`,'gi');
+            newText = newText.replace(regex, (_match, a, b, c, d) => {
+                console.log(a,b,c, d);
                 // if a is beginning or c is endding
                 if (a === undefined) {
                     a = "";
-                } 
+                }
+
                 if (c === undefined) {
                     c = "";
                 }
 
-                if ((a !== " " && a !== "" )|| (c !== " " && c !== "." && c !== "")) {
-                    return a + b + c;
+                if (d === undefined) {
+                    d = "";
+                }
+
+                if (a || c) {
+                    return a + b + c + d
                 } else {
-                    return a + `<span class="highlight">${americanToBritishSpelling[i]}</span>` + c;
+                    return `<span class="highlight">${americanToBritishSpelling[i]}</span>` + d;
                 }
             });
         }
 
         for (let i in americanOnly) {
-            let regex = new RegExp(`(\.)?(${i.toLowerCase()})(\.)?`,'gi');
-            newText = newText.replace(regex, (_match, a, b, c) => {
-                console.log(a,b,c);
+            let regex = new RegExp(`(\[\w-])?(${i.toLowerCase()})(\\w)?(\.)?`,'gi');
+            newText = newText.replace(regex, (_match, a, b, c, d) => {
+                console.log(a,b,c, d);
                 // if a is beginning or c is endding
                 if (a === undefined) {
                     a = "";
-                } 
+                }
+
                 if (c === undefined) {
                     c = "";
                 }
 
-                if ((a !== " " && a !== "" )|| (c !== " " && c !== "." && c !== "")) {
-                    return a + b + c;
+                if (d === undefined) {
+                    d = "";
+                }
+
+                if (a || c) {
+                    return a + b + c + d
                 } else {
-                    return a + `<span class="highlight">${americanOnly[i]}</span>` + c;
+                    return `<span class="highlight">${americanOnly[i]}</span>` + d;
                 }
             });
             
         }
 
         for (let i in americanToBritishTitles) {
-            let regex = new RegExp(`(\.)?(${i.toLowerCase()})(\.)?`,'gi');
-            newText = newText.replace(regex, (_match, a, b, c) => {
-                console.log(a,b,c);
+            let regex = new RegExp(`(\[\w-])?(${i.toLowerCase()})(\\w)?(\.)?`,'gi');
+            newText = newText.replace(regex, (_match, a, b, c, d) => {
+                console.log(a,b,c, d);
                 // if a is beginning or c is endding
                 if (a === undefined) {
                     a = "";
-                } 
+                }
+
                 if (c === undefined) {
                     c = "";
                 }
 
-                if ((a !== " " && a !== "" )|| (c !== " " && c !== "." && c !== "")) {
-                    return a + b + c;
+                if (d === undefined) {
+                    d = "";
+                }
+
+                if (a || c) {
+                    return a + b + c + d
                 } else {
                     let result = americanToBritishTitles[i][0].toUpperCase() + americanToBritishTitles[i].slice(1);
-                    return a + `<span class="highlight">${result}</span>` + c;
+                    return `<span class="highlight">${result}</span>` + d;
                 }
             });
         }
@@ -117,63 +132,79 @@ class Translator {
         let newText = text;
 
         for (let i in americanToBritishSpelling) {
-            let regex = new RegExp(`(\.)?(${americanToBritishSpelling[i].toLowerCase()})(\.)?`,'gi');
-            newText = newText.replace(regex, (_match, a, b, c) => {
-                console.log(a,b,c);
+            let regex = new RegExp(`(\[\w-])?(${americanToBritishSpelling[i].toLowerCase()})(\\w)?(\.)?`,'gi');
+            newText = newText.replace(regex, (_match, a, b, c, d) => {
+                console.log(a, b, c, d);
                 // if a is beginning or c is endding
                 if (a === undefined) {
                     a = "";
-                } 
+                }
+
                 if (c === undefined) {
                     c = "";
                 }
 
-                if ((a !== " " && a !== "" )|| (c !== " " && c !== "." && c !== "")) {
-                    return a + b + c;
+                if (d === undefined) {
+                    d = "";
+                }
+
+                if (a || c) {
+                    return a + b + c + d
                 } else {
-                    return a + `<span class="highlight">${i}</span>` + c;
+                    return `<span class="highlight">${i}</span>` + d;
                 }
             });
         }
 
         for (let i in britishOnly) {
-            let regex = new RegExp(`(\.)?(${i.toLowerCase()})(\.)?`,'gi');
-            newText = newText.replace(regex, (_match, a, b, c) => {
-                console.log(a,b,c);
+            let regex = new RegExp(`(\[\w-])?(${i.toLowerCase()})(\\w)?(\.)?`,'gi');
+            newText = newText.replace(regex, (_match, a, b, c, d) => {
+                console.log(a,b,c, d);
                 // if a is beginning or c is endding
                 if (a === undefined) {
                     a = "";
-                } 
+                }
+
                 if (c === undefined) {
                     c = "";
                 }
 
-                if ((a !== " " && a !== "" )|| (c !== " " && c !== "." && c !== "")) {
-                    return a + b + c;
+                if (d === undefined) {
+                    d = "";
+                }
+
+                if (a || c) {
+                    return a + b + c + d
                 } else {
-                    return a + `<span class="highlight">${britishOnly[i]}</span>` + c;
+                    console.log(_match, `<span class="highlight">${britishOnly[i]}</span>` + d );
+                    return `<span class="highlight">${britishOnly[i]}</span>` + d;
                 }
             });
             
         }
 
         for (let i in americanToBritishTitles) {
-            let regex = new RegExp(`(\.)?(${americanToBritishTitles[i].toLowerCase()})(\.)?`,'gi');
-            newText = newText.replace(regex, (_match, a, b, c) => {
-                console.log(a,b,c);
+            let regex = new RegExp(`(\[\w-])?(${americanToBritishTitles[i].toLowerCase()})(\\w)?(\.)?`,'gi');
+            newText = newText.replace(regex, (_match, a, b, c, d) => {
+                console.log(a, b, c, d);
                 // if a is beginning or c is endding
                 if (a === undefined) {
                     a = "";
-                } 
+                }
+
                 if (c === undefined) {
                     c = "";
                 }
 
-                if ((a !== " " && a !== "" )|| (c !== " " && c !== "." && c !== "")) {
-                    return a + b + c;
+                if (d === undefined) {
+                    d = "";
+                }
+
+                if (a || c) {
+                    return a + b + c + d
                 } else {
                     let result = i[0].toUpperCase() + i.slice(1);
-                    return a + `<span class="highlight">${result}</span>` + c;
+                    return `<span class="highlight">${result}</span>` + d;
                 }
             });
         }
